@@ -1,1 +1,1 @@
-# room-video-player
+# altspace-video-player
