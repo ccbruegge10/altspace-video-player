@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; media-src https: blob:; connect-src https:; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'none'">
+<title>Room Video Player</title><link rel="stylesheet" href="rvp-player.css"></head>
+<body>
+<main><section class="screen"><div class="picture"><video id="video" playsinline crossorigin="anonymous" preload="metadata"></video>
+<div id="idle">ROOM CINEMA<small>Your videos. A shared room.</small></div><button id="unlock" hidden>Enable playback on this device</button></div>
+<div class="transport"><div class="headline"><strong id="title">No video selected</strong><span id="sync">Connecting to room…</span></div>
+<div class="timeline"><span id="elapsed">0:00</span><input id="seek" type="range" min="0" max="1000" value="0" aria-label="Seek video"><span id="duration">0:00</span></div>
+<div class="buttons"><button data-action="previous">⏮</button><button data-action="play">Play</button><button data-action="pause">Pause</button><button data-action="stop">Stop</button><button data-action="next">⏭</button><button id="loop">Loop</button><button id="toggle-panel">Playlist</button><label>Volume <input id="volume" type="range" min="0" max="100" value="80"></label><button id="mute">Mute</button><select id="quality" aria-label="Stream quality"><option value="auto">Auto quality</option><option value="720">720p</option><option value="1080">1080p</option></select></div>
+</div></section>
+<aside id="panel"><header><span class="eyebrow">ROOM VIDEO PLAYER</span><h1>Up next <span id="count">0</span></h1><p id="host">Waiting for host</p></header>
+<nav><button data-tab="queue" class="selected">Queue</button><button data-tab="lists">Lists</button><button data-tab="add">Add / Search</button><button data-tab="host">Host</button></nav>
+<div id="queue-tab" class="tab"><input id="filter" placeholder="Search this queue" aria-label="Search queue"><div class="row"><button id="view">Grid view</button><button id="save">Save queue</button><button data-action="clear">Clear</button></div><div id="queue"></div></div>
+<div id="lists-tab" class="tab" hidden><p>Saved with the room state.</p><div id="lists"></div></div>
+<div id="add-tab" class="tab" hidden><h2>Add video or stream</h2><p>Direct HTTPS media from your configured hosts. No platform embeds.</p><input id="url" placeholder="https://media.your-domain.com/film.mp4" aria-label="Video URL"><input id="new-title" placeholder="Title (optional)" aria-label="Video title"><label class="check"><input id="live" type="checkbox"> Live stream</label><div class="row"><button id="add">Add to queue</button><button id="play-now">Play now</button></div><h2>Import a playlist</h2><p>Paste a JSON array of {"url", "title", "live"} objects, or one HTTPS media URL per line. Maximum 100 items.</p><textarea id="import" rows="6" placeholder="One video URL per line" aria-label="Import playlist"></textarea><button id="import-button">Append playlist</button><h2>Export queue</h2><button id="export">Show JSON</button><textarea id="export-text" rows="5" readonly hidden aria-label="Exported playlist"></textarea></div>
+<div id="host-tab" class="tab" hidden><p id="permissions"></p><button id="lock">Lock controls</button><h2>Pass host controls</h2><div id="users"></div><p class="fine">Volume and mute affect only your device. Queue, playback, looping and quality are shared.</p></div>
+<footer><span id="notice" role="status">Strict ad-free mode · Your media only</span></footer></aside></main>
+<script src="rvp-core.js"></script><script src="rvp-hls.min.js"></script><script src="rvp-player.js"></script></body></html>
